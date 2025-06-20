@@ -1,167 +1,92 @@
 
 "use client";
 
-import React, { useState, useCallback, useEffect } from 'react';
-import { UploadedImage, PdfOrientation, PdfMargin } from '@/lib/types';
-import { ImageUploadArea } from '@/components/jpg2pdf-swift/ImageUploadArea';
-import { ImagePreviewList } from '@/components/jpg2pdf-swift/ImagePreviewList';
-import { PdfSettings } from '@/components/jpg2pdf-swift/PdfSettings';
-import { AiSuggestionCard } from '@/components/jpg2pdf-swift/AiSuggestionCard';
-import { ActionButtons } from '@/components/jpg2pdf-swift/ActionButtons';
-import { useToast } from '@/hooks/use-toast';
-import { Separator } from '@/components/ui/separator';
-import { FileText } from 'lucide-react';
+import React from 'react';
+import Link from 'next/link';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
+import {
+  FileImage, Combine, Spline, Minimize2, FileText, Presentation, Table2Icon,
+  Edit3, Image as ImageIcon, PenTool, Droplets, RotateCw, FileCode, Unlock, Lock,
+  FolderKanban, FileArchive, Wrench, Hash, ScanLine, ScanSearch, GitCompareArrows,
+  SquareSlash, Crop, Grid2X2
+} from 'lucide-react';
 
-export default function JpgToPdfPage() {
-  const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([]);
-  const [pdfOrientation, setPdfOrientation] = useState<PdfOrientation>('portrait');
-  const [pdfMargin, setPdfMargin] = useState<PdfMargin>('small');
-  const [isConverting, setIsConverting] = useState(false);
-  const { toast } = useToast();
-  const [isClient, setIsClient] = useState(false);
+interface Tool {
+  name: string;
+  icon: React.ElementType;
+  href: string;
+  description: string;
+  bgColorClass?: string;
+  textColorClass?: string;
+}
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+const tools: Tool[] = [
+  { name: 'JPG to PDF', icon: FileImage, href: '/jpg-to-pdf', description: 'Convert JPG images to PDF files.', bgColorClass: 'bg-blue-500/10', textColorClass: 'text-blue-600' },
+  { name: 'Merge PDF', icon: Combine, href: '/merge-pdf', description: 'Combine multiple PDF files into one.', bgColorClass: 'bg-green-500/10', textColorClass: 'text-green-600' },
+  { name: 'Split PDF', icon: Spline, href: '/split-pdf', description: 'Extract pages or split a PDF.', bgColorClass: 'bg-yellow-500/10', textColorClass: 'text-yellow-600' },
+  { name: 'Compress PDF', icon: Minimize2, href: '/compress-pdf', description: 'Reduce the file size of your PDF.', bgColorClass: 'bg-purple-500/10', textColorClass: 'text-purple-600' },
+  { name: 'PDF to Word', icon: FileText, href: '/pdf-to-word', description: 'Convert PDFs to Word documents.', bgColorClass: 'bg-sky-500/10', textColorClass: 'text-sky-600' },
+  { name: 'PDF to PowerPoint', icon: Presentation, href: '/pdf-to-powerpoint', description: 'Convert PDFs to PowerPoint.', bgColorClass: 'bg-orange-500/10', textColorClass: 'text-orange-600' },
+  { name: 'PDF to Excel', icon: Table2Icon, href: '/pdf-to-excel', description: 'Convert PDFs to Excel sheets.', bgColorClass: 'bg-teal-500/10', textColorClass: 'text-teal-600' },
+  { name: 'Word to PDF', icon: FileText, href: '/word-to-pdf', description: 'Convert Word documents to PDF.', bgColorClass: 'bg-indigo-500/10', textColorClass: 'text-indigo-600' },
+  { name: 'PowerPoint to PDF', icon: Presentation, href: '/powerpoint-to-pdf', description: 'Convert PowerPoint to PDF.', bgColorClass: 'bg-red-500/10', textColorClass: 'text-red-600' },
+  { name: 'Excel to PDF', icon: Table2Icon, href: '/excel-to-pdf', description: 'Convert Excel sheets to PDF.', bgColorClass: 'bg-lime-500/10', textColorClass: 'text-lime-600' },
+  { name: 'Edit PDF', icon: Edit3, href: '/edit-pdf', description: 'Modify and annotate PDFs.', bgColorClass: 'bg-pink-500/10', textColorClass: 'text-pink-600' },
+  { name: 'PDF to JPG', icon: ImageIcon, href: '/pdf-to-jpg', description: 'Convert PDF pages to JPG images.', bgColorClass: 'bg-amber-500/10', textColorClass: 'text-amber-600' },
+  { name: 'Sign PDF', icon: PenTool, href: '/sign-pdf', description: 'Add your signature to PDFs.', bgColorClass: 'bg-cyan-500/10', textColorClass: 'text-cyan-600' },
+  { name: 'Watermark PDF', icon: Droplets, href: '/watermark-pdf', description: 'Add watermarks to your PDF files.', bgColorClass: 'bg-fuchsia-500/10', textColorClass: 'text-fuchsia-600' },
+  { name: 'Rotate PDF', icon: RotateCw, href: '/rotate-pdf', description: 'Rotate pages in your PDF.', bgColorClass: 'bg-rose-500/10', textColorClass: 'text-rose-600' },
+  { name: 'HTML to PDF', icon: FileCode, href: '/html-to-pdf', description: 'Convert HTML web pages to PDF.', bgColorClass: 'bg-emerald-500/10', textColorClass: 'text-emerald-600' },
+  { name: 'Unlock PDF', icon: Unlock, href: '/unlock-pdf', description: 'Remove PDF password protection.', bgColorClass: 'bg-violet-500/10', textColorClass: 'text-violet-600' },
+  { name: 'Protect PDF', icon: Lock, href: '/protect-pdf', description: 'Add password protection to PDFs.', bgColorClass: 'bg-true-gray-500/10', textColorClass: 'text-true-gray-600' },
+  { name: 'Organize PDF', icon: FolderKanban, href: '/organize-pdf', description: 'Rearrange, delete, or add pages.', bgColorClass: 'bg-light-blue-500/10', textColorClass: 'text-light-blue-600' },
+  { name: 'PDF to PDF/A', icon: FileArchive, href: '/pdf-to-pdfa', description: 'Convert PDFs to PDF/A for archiving.', bgColorClass: 'bg-warm-gray-500/10', textColorClass: 'text-warm-gray-600' },
+  { name: 'Repair PDF', icon: Wrench, href: '/repair-pdf', description: 'Attempt to repair corrupted PDFs.', bgColorClass: 'bg-blue-gray-500/10', textColorClass: 'text-blue-gray-600' },
+  { name: 'Add Page Numbers', icon: Hash, href: '/add-page-numbers', description: 'Insert page numbers into your PDF.', bgColorClass: 'bg-cool-gray-500/10', textColorClass: 'text-cool-gray-600' },
+  { name: 'Scan to PDF', icon: ScanLine, href: '/scan-to-pdf', description: 'Convert scanned documents to PDF.', bgColorClass: 'bg-gray-500/10', textColorClass: 'text-gray-600' },
+  { name: 'OCR PDF', icon: ScanSearch, href: '/ocr-pdf', description: 'Make scanned PDFs searchable.', bgColorClass: 'bg-red-400/10', textColorClass: 'text-red-500' },
+  { name: 'Compare PDF', icon: GitCompareArrows, href: '/compare-pdf', description: 'Compare two PDF files.', bgColorClass: 'bg-yellow-400/10', textColorClass: 'text-yellow-500' },
+  { name: 'Redact PDF', icon: SquareSlash, href: '/redact-pdf', description: 'Permanently remove content.', bgColorClass: 'bg-green-400/10', textColorClass: 'text-green-500' },
+  { name: 'Crop PDF', icon: Crop, href: '/crop-pdf', description: 'Adjust the visible area of pages.', bgColorClass: 'bg-blue-400/10', textColorClass: 'text-blue-500' },
+];
 
-
-  const fileToDataUrl = (file: File): Promise<string> => {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(file);
-    });
-  };
-
-  const handleFilesAdded = useCallback(async (files: File[]) => {
-    const newImagesPromises = files.map(async (file) => {
-      const dataUrl = await fileToDataUrl(file);
-      return {
-        id: crypto.randomUUID(),
-        file,
-        dataUrl,
-        name: file.name,
-      };
-    });
-    const newImages = await Promise.all(newImagesPromises);
-    setUploadedImages((prevImages) => [...prevImages, ...newImages]);
-    toast({
-      title: `${newImages.length} image(s) added successfully!`,
-      description: 'You can now reorder them or adjust PDF settings.',
-    });
-  }, [toast]);
-
-  const handleReorderImages = (newImages: UploadedImage[]) => {
-    setUploadedImages(newImages);
-  };
-
-  const handleRemoveImage = (id: string) => {
-    setUploadedImages((prevImages) => prevImages.filter((img) => img.id !== id));
-    toast({
-      title: 'Image removed',
-      description: 'The selected image has been removed from the list.',
-    });
-  };
-
-  const handleConvertAndDownload = async () => {
-    if (uploadedImages.length === 0) {
-      toast({
-        title: 'No Images to Convert',
-        description: 'Please upload JPG images first.',
-        variant: 'destructive',
-      });
-      return;
-    }
-
-    setIsConverting(true);
-    toast({
-      title: 'Conversion Started',
-      description: 'Your PDF is being generated...',
-    });
-
-    // Simulate PDF conversion
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    // Mock PDF content
-    const pdfContent = `
-      JPG2PDF Swift - Mock PDF Document
-      ---------------------------------
-      Generated at: ${new Date().toLocaleString()}
-
-      Orientation: ${pdfOrientation}
-      Margin: ${pdfMargin}
-
-      Images included:
-      ${uploadedImages.map((img, index) => `${index + 1}. ${img.name}`).join('\n')}
-
-      --- This is a mock PDF file. Actual PDF generation requires a library. ---
-    `;
-    const blob = new Blob([pdfContent], { type: 'application/pdf' }); // Changed text/plain to application/pdf
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'jpg2pdf-swift_output.pdf'; // Simulate PDF download
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-
-    setIsConverting(false);
-    toast({
-      title: 'Conversion Successful!',
-      description: 'Your PDF has been downloaded.',
-    });
-  };
-
-  if (!isClient) {
-    return null; // Or a loading spinner, to avoid hydration errors
-  }
-
+export default function HomePage() {
   return (
-    <div className="container mx-auto p-4 md:p-8 min-h-screen flex flex-col">
-      <header className="mb-8 text-center">
-        <div className="inline-flex items-center justify-center">
-           <FileText className="h-12 w-12 text-primary mr-3" />
-           <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary">JPG2PDF Swift</h1>
+    <div className="container mx-auto p-4 md:p-8 min-h-screen">
+      <header className="mb-10 text-center">
+        <div className="inline-flex items-center justify-center mb-3">
+           <Grid2X2 className="h-12 w-12 text-primary mr-3" />
+           <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary">Your PDF Toolkit</h1>
         </div>
-        <p className="text-lg text-muted-foreground mt-2">
-          Convert JPG images to PDF in seconds. Easily adjust orientation and margins.
+        <p className="text-lg text-muted-foreground">
+          All the PDF tools you need, in one place. Easy, fast, and free.
         </p>
       </header>
 
-      <main className="flex-grow grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-        <div className="lg:col-span-2 space-y-6">
-          <ImageUploadArea onFilesAdded={handleFilesAdded} className="min-h-[200px]" />
-          {uploadedImages.length > 0 && (
-             <h2 className="text-2xl font-headline font-semibold mt-6">Uploaded Images ({uploadedImages.length})</h2>
-          )}
-          <ImagePreviewList
-            images={uploadedImages}
-            onReorder={handleReorderImages}
-            onRemove={handleRemoveImage}
-            className={uploadedImages.length > 0 ? "border rounded-lg shadow" : ""}
-          />
-        </div>
-
-        <div className="space-y-6 lg:sticky lg:top-8 lg:self-start">
-          <PdfSettings
-            orientation={pdfOrientation}
-            onOrientationChange={setPdfOrientation}
-            margin={pdfMargin}
-            onMarginChange={setPdfMargin}
-          />
-          <AiSuggestionCard images={uploadedImages} />
-          <ActionButtons
-            onConvertAndDownload={handleConvertAndDownload}
-            isConverting={isConverting}
-            canConvert={uploadedImages.length > 0}
-          />
+      <main>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
+          {tools.map((tool) => (
+            <Link href={tool.href} key={tool.name} passHref legacyBehavior>
+              <a className="block h-full transform transition-all duration-300 ease-out hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg">
+                <Card className={`h-full flex flex-col justify-between shadow-lg hover:shadow-xl transition-shadow duration-300 border ${tool.bgColorClass ? tool.bgColorClass.replace('/10', '/20') : 'border-border'}`}>
+                  <CardHeader className="items-center text-center p-4">
+                    <div className={`p-3 rounded-full mb-3 inline-block ${tool.bgColorClass || 'bg-primary/10'}`}>
+                      <tool.icon className={`h-8 w-8 ${tool.textColorClass || 'text-primary'}`} />
+                    </div>
+                    <CardTitle className={`text-lg font-semibold ${tool.textColorClass || 'text-foreground'}`}>{tool.name}</CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-center p-4 pt-0">
+                    <CardDescription className="text-sm text-muted-foreground">{tool.description}</CardDescription>
+                  </CardContent>
+                </Card>
+              </a>
+            </Link>
+          ))}
         </div>
       </main>
 
-      <footer className="mt-12 text-center text-sm text-muted-foreground py-6 border-t">
-        <p>&copy; {new Date().getFullYear()} JPG2PDF Swift. All rights reserved.</p>
+      <footer className="mt-16 text-center text-sm text-muted-foreground py-8 border-t">
+        <p>&copy; {new Date().getFullYear()} PDF Toolkit. All rights reserved.</p>
       </footer>
     </div>
   );

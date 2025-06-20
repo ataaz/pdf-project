@@ -1,10 +1,11 @@
+
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'JPG2PDF Swift',
-  description: 'Convert JPG images to PDF in seconds. Easily adjust orientation and margins.',
+  title: 'Your PDF Toolkit',
+  description: 'A comprehensive suite of tools to manage and convert your PDF files. Edit, merge, split, compress, and more.',
 };
 
 export default function RootLayout({
