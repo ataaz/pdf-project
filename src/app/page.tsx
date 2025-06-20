@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useCallback, useEffect } from 'react';
@@ -94,9 +95,9 @@ export default function JpgToPdfPage() {
       Images included:
       ${uploadedImages.map((img, index) => `${index + 1}. ${img.name}`).join('\n')}
 
-      --- This is a mock PDF file. ---
+      --- This is a mock PDF file. Actual PDF generation requires a library. ---
     `;
-    const blob = new Blob([pdfContent], { type: 'text/plain' });
+    const blob = new Blob([pdfContent], { type: 'application/pdf' }); // Changed text/plain to application/pdf
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
