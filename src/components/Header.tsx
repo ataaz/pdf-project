@@ -10,83 +10,144 @@ import {
   MenubarMenu,
   MenubarTrigger,
 } from "@/components/ui/menubar";
-import { Grid2X2 } from 'lucide-react';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import { Button } from '@/components/ui/button';
+import { Grid2X2, Menu } from 'lucide-react';
+
+const navLinks = [
+    {
+        title: 'Organize PDF',
+        items: [
+            { href: '/merge-pdf', label: 'Merge PDF' },
+            { href: '/split-pdf', label: 'Split PDF' },
+            { href: '/organize-pdf', label: 'Organize PDF' },
+            { href: '/add-page-numbers', label: 'Add Page Numbers' },
+            { href: '/rotate-pdf', label: 'Rotate PDF' },
+            { href: '/crop-pdf', label: 'Crop PDF' },
+        ],
+    },
+    {
+        title: 'Optimize PDF',
+        items: [
+            { href: '/compress-pdf', label: 'Compress PDF' },
+            { href: '/repair-pdf', label: 'Repair PDF' },
+        ],
+    },
+    {
+        title: 'Convert to PDF',
+        items: [
+            { href: '/jpg-to-pdf', label: 'JPG to PDF' },
+            { href: '/word-to-pdf', label: 'Word to PDF' },
+            { href: '/powerpoint-to-pdf', label: 'PowerPoint to PDF' },
+            { href: '/excel-to-pdf', label: 'Excel to PDF' },
+            { href: '/html-to-pdf', label: 'HTML to PDF' },
+            { href: '/scan-to-pdf', label: 'Scan to PDF' },
+        ],
+    },
+    {
+        title: 'Convert from PDF',
+        items: [
+            { href: '/pdf-to-jpg', label: 'PDF to JPG' },
+            { href: '/pdf-to-word', label: 'PDF to Word' },
+            { href: '/pdf-to-powerpoint', label: 'PDF to PowerPoint' },
+            { href: '/pdf-to-excel', label: 'PDF to Excel' },
+            { href: '/pdf-to-pdfa', label: 'PDF to PDF/A' },
+            { href: '/ocr-pdf', label: 'OCR PDF' },
+        ],
+    },
+    {
+        title: 'Edit PDF',
+        items: [
+            { href: '/edit-pdf', label: 'Edit PDF' },
+            { href: '/redact-pdf', label: 'Redact PDF' },
+            { href: '/sign-pdf', label: 'Sign PDF' },
+            { href: '/watermark-pdf', label: 'Watermark PDF' },
+        ],
+    },
+    {
+        title: 'PDF Security',
+        items: [
+            { href: '/protect-pdf', label: 'Protect PDF' },
+            { href: '/unlock-pdf', label: 'Unlock PDF' },
+            { href: '/compare-pdf', label: 'Compare PDF' },
+        ],
+    },
+];
 
 const Header = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex flex-col md:flex-row h-auto md:h-14 py-2 md:py-0 max-w-6xl items-center justify-center gap-4">
-        <div className="flex-shrink-0">
-          <Link href="/" className="flex items-center space-x-2">
-            <Grid2X2 className="h-6 w-6 text-primary" />
-            <span className="font-bold">PDFry</span>
-          </Link>
-        </div>
-        <div className="flex items-center justify-center flex-grow md:flex-grow-0">
-          <Menubar className="flex-wrap md:flex-nowrap h-auto md:h-10 justify-center">
-            <MenubarMenu>
-              <MenubarTrigger>Organize PDF</MenubarTrigger>
-              <MenubarContent>
-                <MenubarItem asChild><Link href="/merge-pdf">Merge PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/split-pdf">Split PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/organize-pdf">Organize PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/add-page-numbers">Add Page Numbers</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/rotate-pdf">Rotate PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/crop-pdf">Crop PDF</Link></MenubarItem>
-              </MenubarContent>
-            </MenubarMenu>
+      <div className="container flex h-14 max-w-6xl items-center justify-between">
+        <Link href="/" className="flex items-center space-x-2">
+          <Grid2X2 className="h-6 w-6 text-primary" />
+          <span className="font-bold">PDFry</span>
+        </Link>
+        
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex">
+            <Menubar>
+                {navLinks.map((group) => (
+                    <MenubarMenu key={group.title}>
+                        <MenubarTrigger>{group.title}</MenubarTrigger>
+                        <MenubarContent>
+                            {group.items.map((item) => (
+                                <MenubarItem key={item.href} asChild>
+                                    <Link href={item.href}>{item.label}</Link>
+                                </MenubarItem>
+                            ))}
+                        </MenubarContent>
+                    </MenubarMenu>
+                ))}
+            </Menubar>
+        </nav>
 
-            <MenubarMenu>
-              <MenubarTrigger>Optimize PDF</MenubarTrigger>
-              <MenubarContent>
-                <MenubarItem asChild><Link href="/compress-pdf">Compress PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/repair-pdf">Repair PDF</Link></MenubarItem>
-              </MenubarContent>
-            </MenubarMenu>
-
-            <MenubarMenu>
-              <MenubarTrigger>Convert to PDF</MenubarTrigger>
-              <MenubarContent>
-                <MenubarItem asChild><Link href="/jpg-to-pdf">JPG to PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/word-to-pdf">Word to PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/powerpoint-to-pdf">PowerPoint to PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/excel-to-pdf">Excel to PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/html-to-pdf">HTML to PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/scan-to-pdf">Scan to PDF</Link></MenubarItem>
-              </MenubarContent>
-            </MenubarMenu>
-
-            <MenubarMenu>
-              <MenubarTrigger>Convert from PDF</MenubarTrigger>
-              <MenubarContent>
-                <MenubarItem asChild><Link href="/pdf-to-jpg">PDF to JPG</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/pdf-to-word">PDF to Word</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/pdf-to-powerpoint">PDF to PowerPoint</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/pdf-to-excel">PDF to Excel</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/pdf-to-pdfa">PDF to PDF/A</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/ocr-pdf">OCR PDF</Link></MenubarItem>
-              </MenubarContent>
-            </MenubarMenu>
-
-            <MenubarMenu>
-              <MenubarTrigger>Edit PDF</MenubarTrigger>
-              <MenubarContent>
-                <MenubarItem asChild><Link href="/edit-pdf">Edit PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/redact-pdf">Redact PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/sign-pdf">Sign PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/watermark-pdf">Watermark PDF</Link></MenubarItem>
-              </MenubarContent>
-            </MenubarMenu>
-            
-            <MenubarMenu>
-              <MenubarTrigger>PDF Security</MenubarTrigger>
-              <MenubarContent>
-                <MenubarItem asChild><Link href="/protect-pdf">Protect PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/unlock-pdf">Unlock PDF</Link></MenubarItem>
-                <MenubarItem asChild><Link href="/compare-pdf">Compare PDF</Link></MenubarItem>
-              </MenubarContent>
-            </MenubarMenu>
-          </Menubar>
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                <SheetTrigger asChild>
+                    <Button variant="ghost" size="icon">
+                        <Menu className="h-6 w-6" />
+                        <span className="sr-only">Toggle Menu</span>
+                    </Button>
+                </SheetTrigger>
+                <SheetContent side="left" className="w-[300px]">
+                    <div className="p-4">
+                      <Link href="/" className="flex items-center space-x-2 mb-6" onClick={() => setIsMobileMenuOpen(false)}>
+                        <Grid2X2 className="h-6 w-6 text-primary" />
+                        <span className="font-bold">PDFry</span>
+                      </Link>
+                      <Accordion type="single" collapsible className="w-full">
+                          {navLinks.map((group) => (
+                              <AccordionItem key={group.title} value={group.title}>
+                                  <AccordionTrigger>{group.title}</AccordionTrigger>
+                                  <AccordionContent>
+                                      <div className="flex flex-col space-y-1 pl-4">
+                                          {group.items.map((item) => (
+                                              <Link 
+                                                  key={item.href} 
+                                                  href={item.href} 
+                                                  className="p-2 rounded-md hover:bg-accent"
+                                                  onClick={() => setIsMobileMenuOpen(false)}
+                                              >
+                                                  {item.label}
+                                              </Link>
+                                          ))}
+                                      </div>
+                                  </AccordionContent>
+                              </AccordionItem>
+                          ))}
+                      </Accordion>
+                    </div>
+                </SheetContent>
+            </Sheet>
         </div>
       </div>
     </header>
