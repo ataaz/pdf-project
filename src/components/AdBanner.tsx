@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -10,7 +9,7 @@ interface AdBannerProps {
 }
 
 export const AdBanner: React.FC<AdBannerProps> = ({ className, type = 'horizontal' }) => {
-  const horizontalClasses = 'h-24 w-full md:h-28';
+  const horizontalClasses = 'h-28 w-full';
   const verticalClasses = 'w-full min-h-[250px] md:min-h-[300px]';
 
   return (
