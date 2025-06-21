@@ -2,7 +2,7 @@
 "use client";
 
 import React, { useState, useCallback, useRef } from 'react';
-import * as pdfjs from 'pdfjs-dist';
+import * as pdfjs from 'pdfjs-dist/build/pdf.mjs';
 import { useToast } from '@/hooks/use-toast';
 import { RotateCw, UploadCloud, Loader2, FileText, Trash2, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
