@@ -66,20 +66,22 @@ export default function HomePage() {
       <main>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">
           {tools.map((tool) => (
-            <Link href={tool.href} key={tool.name} passHref legacyBehavior>
-              <a className="block h-full transform transition-all duration-300 ease-out hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg">
-                <Card className={`h-full flex flex-col justify-between shadow-lg hover:shadow-xl transition-shadow duration-300 border ${tool.bgColorClass ? tool.bgColorClass.replace('/10', '/20') : 'border-border'}`}>
-                  <CardHeader className="items-center text-center p-4">
-                    <div className={`p-3 rounded-full mb-3 inline-block ${tool.bgColorClass || 'bg-primary/10'}`}>
-                      <tool.icon className={`h-8 w-8 ${tool.textColorClass || 'text-primary'}`} />
-                    </div>
-                    <CardTitle className={`text-lg font-semibold ${tool.textColorClass || 'text-foreground'}`}>{tool.name}</CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-center p-4 pt-0">
-                    <CardDescription className="text-sm text-muted-foreground">{tool.description}</CardDescription>
-                  </CardContent>
-                </Card>
-              </a>
+            <Link
+              href={tool.href}
+              key={tool.name}
+              className="block h-full transform transition-all duration-300 ease-out hover:scale-105 focus:scale-105 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-lg"
+            >
+              <Card className={`h-full flex flex-col justify-between shadow-lg hover:shadow-xl transition-shadow duration-300 border ${tool.bgColorClass ? tool.bgColorClass.replace('/10', '/20') : 'border-border'}`}>
+                <CardHeader className="items-center text-center p-4">
+                  <div className={`p-3 rounded-full mb-3 inline-block ${tool.bgColorClass || 'bg-primary/10'}`}>
+                    <tool.icon className={`h-8 w-8 ${tool.textColorClass || 'text-primary'}`} />
+                  </div>
+                  <CardTitle className={`text-lg font-semibold ${tool.textColorClass || 'text-foreground'}`}>{tool.name}</CardTitle>
+                </CardHeader>
+                <CardContent className="text-center p-4 pt-0">
+                  <CardDescription className="text-sm text-muted-foreground">{tool.description}</CardDescription>
+                </CardContent>
+              </Card>
             </Link>
           ))}
         </div>
