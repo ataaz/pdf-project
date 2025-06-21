@@ -60,6 +60,7 @@ const navLinks = [
             { href: '/pdf-to-excel', label: 'PDF to Excel' },
             { href: '/pdf-to-pdfa', label: 'PDF to PDF/A' },
             { href: '/ocr-pdf', label: 'OCR PDF' },
+            { href: '/pdf-text-summarizer', label: 'PDF Summarizer' },
         ],
     },
     {

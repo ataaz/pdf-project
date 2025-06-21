@@ -6,7 +6,7 @@ import {
   FileImage, Combine, Spline, Minimize2, FileText, Presentation, Table2Icon,
   Edit3, Image as ImageIcon, PenTool, Droplets, RotateCw, FileCode, Unlock, Lock,
   FolderKanban, FileArchive, Wrench, Hash, ScanLine, ScanSearch, GitCompareArrows,
-  SquareSlash, Crop, Grid2X2
+  SquareSlash, Crop, Grid2X2, TextQuote
 } from 'lucide-react';
 import { AdBanner } from '@/components/AdBanner';
 
@@ -49,6 +49,7 @@ const tools: Tool[] = [
   { name: 'Add Page Numbers', icon: Hash, href: '/add-page-numbers', description: 'Insert page numbers into your PDF.', bgColorClass: 'bg-cool-gray-500/10', textColorClass: 'text-cool-gray-600' },
   { name: 'Scan to PDF', icon: ScanLine, href: '/scan-to-pdf', description: 'Convert scanned documents to PDF.', bgColorClass: 'bg-gray-500/10', textColorClass: 'text-gray-600' },
   { name: 'OCR PDF', icon: ScanSearch, href: '/ocr-pdf', description: 'Make scanned PDFs searchable.', bgColorClass: 'bg-red-400/10', textColorClass: 'text-red-500' },
+  { name: 'PDF Summarizer', icon: TextQuote, href: '/pdf-text-summarizer', description: 'Get a quick summary of your PDF content.', bgColorClass: 'bg-indigo-400/10', textColorClass: 'text-indigo-500' },
   { name: 'Compare PDF', icon: GitCompareArrows, href: '/compare-pdf', description: 'Compare two PDF files.', bgColorClass: 'bg-yellow-400/10', textColorClass: 'text-yellow-500' },
   { name: 'Redact PDF', icon: SquareSlash, href: '/redact-pdf', description: 'Permanently remove content.', bgColorClass: 'bg-green-400/10', textColorClass: 'text-green-500' },
   { name: 'Crop PDF', icon: Crop, href: '/crop-pdf', description: 'Adjust the visible area of pages.', bgColorClass: 'bg-blue-400/10', textColorClass: 'text-blue-500' },
