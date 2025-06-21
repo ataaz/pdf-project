@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useCallback, useRef } from 'react';
@@ -9,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { extractTablesFromPdfImages, type PdfToExcelOutput } from '@/ai/flows/pdf-to-excel-flow';
 import { Progress } from '@/components/ui/progress';
 import { TablePreview } from '@/components/pdf-to-excel/TablePreview';
+import { AdBanner } from '@/components/AdBanner';
 
 // Set worker source for pdfjs from a CDN
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -142,6 +144,7 @@ export default function PdfToExcelPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-1 space-y-6">
+          <AdBanner type="vertical" className="hidden lg:flex" />
            <Card>
             <CardHeader>
               <CardTitle>1. Upload PDF</CardTitle>

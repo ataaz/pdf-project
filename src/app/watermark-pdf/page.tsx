@@ -12,6 +12,7 @@ import { Slider } from '@/components/ui/slider';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { PDFDocument, rgb, StandardFonts, degrees } from 'pdf-lib';
+import { AdBanner } from '@/components/AdBanner';
 
 type WatermarkPosition = 'center' | 'top_left' | 'top_right' | 'bottom_left' | 'bottom_right';
 type WatermarkType = 'text' | 'image';
@@ -234,6 +235,7 @@ export default function WatermarkPdfPage() {
         </div>
 
         <aside className="space-y-6">
+          <AdBanner type="vertical" className="hidden lg:flex" />
           <Card>
             <CardHeader>
                 <CardTitle>2. Watermark Settings</CardTitle>
@@ -336,5 +338,3 @@ export default function WatermarkPdfPage() {
     </div>
   );
 }
-
-    

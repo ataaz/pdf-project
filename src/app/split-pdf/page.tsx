@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useCallback } from 'react';
@@ -8,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { PdfUploadArea } from '@/components/split-pdf/PdfUploadArea';
 import { PageSelector } from '@/components/split-pdf/PageSelector';
 import { ActionButtons } from '@/components/jpg2pdf-swift/ActionButtons';
+import { AdBanner } from '@/components/AdBanner';
 
 export default function SplitPdfPage() {
   const [pdfFile, setPdfFile] = useState<File | null>(null);
@@ -122,6 +124,7 @@ export default function SplitPdfPage() {
         </div>
 
         <aside className="space-y-6">
+          <AdBanner type="vertical" className="hidden lg:flex" />
           {pdfFile && (
             <Card>
               <CardHeader>

@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useCallback } from 'react';
@@ -8,6 +9,7 @@ import { ActionButtons } from '@/components/jpg2pdf-swift/ActionButtons';
 import { useToast } from '@/hooks/use-toast';
 import { Combine } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { AdBanner } from '@/components/AdBanner';
 
 
 export default function MergePdfPage() {
@@ -109,6 +111,7 @@ export default function MergePdfPage() {
         </div>
 
         <aside className="space-y-6">
+          <AdBanner type="vertical" className="hidden lg:flex" />
           <Card>
             <CardHeader>
                 <CardTitle>Merge Settings</CardTitle>

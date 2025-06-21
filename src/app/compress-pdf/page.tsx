@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PdfUploadArea } from '@/components/compress-pdf/PdfUploadArea';
 import { ActionButtons } from '@/components/jpg2pdf-swift/ActionButtons';
 import { CompressionSettings, CompressionLevel } from '@/components/compress-pdf/CompressionSettings';
+import { AdBanner } from '@/components/AdBanner';
 
 export default function CompressPdfPage() {
   const [pdfFile, setPdfFile] = useState<File | null>(null);
@@ -115,6 +116,7 @@ export default function CompressPdfPage() {
         </div>
 
         <aside className="space-y-6">
+          <AdBanner type="vertical" className="hidden lg:flex" />
           <CompressionSettings 
             level={compressionLevel}
             onLevelChange={setCompressionLevel}

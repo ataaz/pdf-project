@@ -10,6 +10,7 @@ import {
   FolderKanban, FileArchive, Wrench, Hash, ScanLine, ScanSearch, GitCompareArrows,
   SquareSlash, Crop, Grid2X2
 } from 'lucide-react';
+import { AdBanner } from '@/components/AdBanner';
 
 interface Tool {
   name: string;
@@ -62,6 +63,8 @@ export default function HomePage() {
           All the PDF tools you need, in one place. Easy, fast, and free.
         </p>
       </header>
+
+      <AdBanner className="mb-8" />
 
       <main>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6">

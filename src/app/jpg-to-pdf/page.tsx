@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useCallback } from 'react';
@@ -10,6 +11,7 @@ import { AiSuggestionCard } from '@/components/jpg2pdf-swift/AiSuggestionCard';
 import { ActionButtons } from '@/components/jpg2pdf-swift/ActionButtons';
 import { useToast } from '@/hooks/use-toast';
 import { FileImage } from 'lucide-react';
+import { AdBanner } from '@/components/AdBanner';
 
 export default function JpgToPdfPage() {
   const [images, setImages] = useState<UploadedImage[]>([]);
@@ -163,6 +165,7 @@ export default function JpgToPdfPage() {
         </div>
 
         <aside className="space-y-6">
+          <AdBanner type="vertical" className="hidden lg:flex" />
           <PdfSettings
             orientation={orientation}
             onOrientationChange={setOrientation}

@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useCallback, useRef } from 'react';
@@ -7,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
 import { NumberSettings, type PageNumberSettings } from '@/components/add-page-numbers/NumberSettings';
+import { AdBanner } from '@/components/AdBanner';
 
 export default function AddPageNumbersPage() {
   const [pdfFile, setPdfFile] = useState<File | null>(null);
@@ -190,6 +192,7 @@ export default function AddPageNumbersPage() {
         </div>
 
         <aside className="space-y-6">
+          <AdBanner type="vertical" className="hidden lg:flex" />
           <NumberSettings settings={settings} onSettingsChange={setSettings} disabled={!pdfFile || isProcessing} />
           <Button onClick={handleAddNumbers} disabled={!pdfFile || isProcessing} className="w-full text-lg py-6">
               {isProcessing ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Download className="mr-2 h-5 w-5" />}
