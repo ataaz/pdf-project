@@ -7,6 +7,7 @@ import { FileCode, Loader2, Download, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
+import { AdBanner } from '@/components/AdBanner';
 
 export default function HtmlToPdfPage() {
   const [htmlContent, setHtmlContent] = useState('');
@@ -115,7 +116,7 @@ export default function HtmlToPdfPage() {
           </div>
         </div>
       </header>
-
+      <AdBanner className="my-8" />
       <main className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="md:col-span-2">
             <Card>

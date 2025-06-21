@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useRef, useCallback } from 'react';
@@ -5,6 +6,7 @@ import { GitCompareArrows, UploadCloud, FileText, Trash2, Loader2 } from 'lucide
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import { AdBanner } from '@/components/AdBanner';
 
 const PdfDropzone = ({
   file,
@@ -116,6 +118,7 @@ export default function ComparePdfPage() {
           </div>
         </div>
       </header>
+       <AdBanner className="my-8" />
        <main className="space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <PdfDropzone 

@@ -10,6 +10,7 @@ import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import Image from 'next/image';
 import { jsPDF } from 'jspdf';
+import { AdBanner } from '@/components/AdBanner';
 
 interface CapturedImage {
   id: string;
@@ -149,6 +150,7 @@ export default function ScanToPdfPage() {
           </div>
         </div>
       </header>
+      <AdBanner className="my-8" />
       <main className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <Card>
           <CardHeader>

@@ -10,7 +10,7 @@ interface AdBannerProps {
 
 export const AdBanner: React.FC<AdBannerProps> = ({ className, type = 'horizontal' }) => {
   const horizontalClasses = 'h-28 w-full';
-  const verticalClasses = 'w-full min-h-[250px] md:min-h-[300px]';
+  const verticalClasses = 'w-full min-h-[120px] md:min-h-[120px]';
 
   return (
     <div

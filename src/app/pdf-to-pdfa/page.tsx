@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useCallback, useRef } from 'react';
@@ -5,6 +6,7 @@ import { useToast } from '@/hooks/use-toast';
 import { FileArchive, UploadCloud, Loader2, FileText, Trash2, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { AdBanner } from '@/components/AdBanner';
 
 export default function PdfToPdfaPage() {
   const [pdfFile, setPdfFile] = useState<File | null>(null);
@@ -62,7 +64,7 @@ export default function PdfToPdfaPage() {
           </div>
         </div>
       </header>
-
+      <AdBanner className="my-8" />
       <main className="flex flex-col items-start gap-8">
         <Card className="w-full max-w-2xl">
           <CardHeader>

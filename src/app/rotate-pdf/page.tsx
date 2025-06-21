@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useCallback, useRef } from 'react';
@@ -8,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { PagePreviewGrid } from '@/components/rotate-pdf/PagePreviewGrid';
 import { PDFDocument, degrees } from 'pdf-lib';
+import { AdBanner } from '@/components/AdBanner';
 
 // Set worker source for pdfjs from a CDN
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -143,7 +145,7 @@ export default function RotatePdfPage() {
           </Button>
         )}
       </header>
-      
+      <AdBanner className="my-8" />
       <main className="flex flex-col items-start gap-8">
         {!pdfFile ? (
           <Card className="w-full max-w-4xl">

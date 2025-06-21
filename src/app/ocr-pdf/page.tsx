@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useCallback, useRef } from 'react';
@@ -9,6 +10,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Progress } from '@/components/ui/progress';
 import { ocrPdfImages } from '@/ai/flows/ocr-pdf-flow';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+import { AdBanner } from '@/components/AdBanner';
 
 // Set worker source for pdfjs from a CDN
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
@@ -187,7 +189,7 @@ export default function OcrPdfPage() {
           </div>
         </div>
       </header>
-      
+      <AdBanner className="my-8" />
       <main className="flex flex-col items-start gap-8">
         <Card className="w-full max-w-2xl">
             <CardHeader>

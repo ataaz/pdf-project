@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { PDFDocument } from 'pdf-lib';
+import { AdBanner } from '@/components/AdBanner';
 
 export default function UnlockPdfPage() {
   const [pdfFile, setPdfFile] = useState<File | null>(null);
@@ -106,7 +107,7 @@ export default function UnlockPdfPage() {
           </div>
         </div>
       </header>
-
+      <AdBanner className="my-8" />
       <main className="flex flex-col items-start gap-8">
         <Card className="w-full max-w-2xl">
           <CardHeader>
