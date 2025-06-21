@@ -19,7 +19,6 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Grid2X2, Menu } from 'lucide-react';
-import { useIsMobile } from '@/hooks/use-mobile';
 
 const navLinks = [
     {
@@ -80,17 +79,23 @@ const navLinks = [
             { href: '/compare-pdf', label: 'Compare PDF' },
         ],
     },
+    {
+        title: 'Blog',
+        items: [
+            { href: '/blog', label: 'All Posts' }
+        ]
+    }
 ];
 
 const DesktopNav = () => (
   <nav className="hidden md:flex">
-    <Menubar>
+    <Menubar className="border-none bg-transparent shadow-none">
       {navLinks.map((group) => (
         <MenubarMenu key={group.title}>
-          <MenubarTrigger>{group.title}</MenubarTrigger>
+          <MenubarTrigger className="hover:bg-accent/50 cursor-pointer">{group.title}</MenubarTrigger>
           <MenubarContent>
             {group.items.map((item) => (
-              <MenubarItem key={item.href} asChild>
+              <MenubarItem key={item.href} asChild className="cursor-pointer">
                 <Link href={item.href}>{item.label}</Link>
               </MenubarItem>
             ))}
@@ -115,12 +120,12 @@ const MobileNav = () => {
         </SheetTrigger>
         <SheetContent side="left" className="w-[300px] p-0">
           <SheetHeader className="p-4 border-b">
-            <SheetTitle asChild>
-              <Link href="/" className="flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
-                <Grid2X2 className="h-6 w-6 text-primary" />
-                <span className="font-bold">PDFry</span>
-              </Link>
-            </SheetTitle>
+             <SheetTitle asChild>
+                <Link href="/" className="flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
+                    <Grid2X2 className="h-6 w-6 text-primary" />
+                    <span className="font-bold">PDFry</span>
+                </Link>
+             </SheetTitle>
           </SheetHeader>
           <div className="p-4">
             <Accordion type="single" collapsible className="w-full">
