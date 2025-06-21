@@ -3,8 +3,7 @@
 
 import React, { useState, useCallback, useRef } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import Link from 'next/link';
-import { ArrowLeft, Table2Icon, UploadCloud, Loader2, FileText, Trash2, Download } from 'lucide-react';
+import { Table2Icon, UploadCloud, Loader2, FileText, Trash2, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 
@@ -102,7 +101,7 @@ export default function ExcelToPdfPage() {
   }, [excelFile, toast]);
 
   return (
-    <div className="container mx-auto p-4 md:p-8 min-h-screen">
+    <div className="container mx-auto p-4 md:p-8 max-w-6xl">
       <header className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
           <Table2Icon className="h-10 w-10 text-primary" />
@@ -111,12 +110,6 @@ export default function ExcelToPdfPage() {
             <p className="text-lg text-muted-foreground">Convert spreadsheets to PDF documents</p>
           </div>
         </div>
-        <Button asChild variant="outline">
-          <Link href="/">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Tools
-          </Link>
-        </Button>
       </header>
 
       <main className="flex flex-col items-center gap-8">

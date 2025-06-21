@@ -3,8 +3,7 @@
 import React, { useState, useCallback, useRef } from 'react';
 import * as pdfjs from 'pdfjs-dist';
 import { useToast } from '@/hooks/use-toast';
-import Link from 'next/link';
-import { ArrowLeft, Table2Icon, UploadCloud, Loader2, Trash2, FileText } from 'lucide-react';
+import { Table2Icon, UploadCloud, Loader2, Trash2, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { extractTablesFromPdfImages, type PdfToExcelOutput } from '@/ai/flows/pdf-to-excel-flow';
@@ -130,7 +129,7 @@ export default function PdfToExcelPage() {
   const baseFileName = pdfFile?.name.replace(/\.[^/.]+$/, "") || 'download';
 
   return (
-    <div className="container mx-auto p-4 md:p-8 min-h-screen">
+    <div className="container mx-auto p-4 md:p-8 max-w-6xl">
       <header className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
           <Table2Icon className="h-10 w-10 text-primary" />
@@ -139,12 +138,6 @@ export default function PdfToExcelPage() {
             <p className="text-lg text-muted-foreground">Extract tables from your PDF to Excel using AI</p>
           </div>
         </div>
-        <Button asChild variant="outline">
-          <Link href="/">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Tools
-          </Link>
-        </Button>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

@@ -3,8 +3,7 @@
 import React, { useState, useCallback, useRef } from 'react';
 import * as pdfjs from 'pdfjs-dist';
 import { useToast } from '@/hooks/use-toast';
-import Link from 'next/link';
-import { ArrowLeft, Presentation, UploadCloud, Loader2, Trash2, FileText } from 'lucide-react';
+import { Presentation, UploadCloud, Loader2, Trash2, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { extractSlidesFromPdfImages, type PdfToPowerpointOutput } from '@/ai/flows/pdf-to-powerpoint-flow';
@@ -121,7 +120,7 @@ export default function PdfToPowerpointPage() {
   }, [pdfFile, toast, handleReset]);
 
   return (
-    <div className="container mx-auto p-4 md:p-8 min-h-screen">
+    <div className="container mx-auto p-4 md:p-8 max-w-6xl">
       <header className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
           <Presentation className="h-10 w-10 text-primary" />
@@ -130,12 +129,6 @@ export default function PdfToPowerpointPage() {
             <p className="text-lg text-muted-foreground">Generate a presentation from your PDF using AI</p>
           </div>
         </div>
-        <Button asChild variant="outline">
-          <Link href="/">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Tools
-          </Link>
-        </Button>
       </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

@@ -3,8 +3,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import Link from 'next/link';
-import { ArrowLeft, Minimize2, FileText, Trash2 } from 'lucide-react';
+import { Minimize2, FileText, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PdfUploadArea } from '@/components/compress-pdf/PdfUploadArea';
@@ -78,7 +77,7 @@ export default function CompressPdfPage() {
   }, [pdfFile, compressionLevel, toast]);
 
   return (
-    <div className="container mx-auto p-4 md:p-8 min-h-screen">
+    <div className="container mx-auto p-4 md:p-8 max-w-6xl">
       <header className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
           <Minimize2 className="h-10 w-10 text-primary" />
@@ -87,12 +86,6 @@ export default function CompressPdfPage() {
             <p className="text-lg text-muted-foreground">Reduce the size of your PDF file</p>
           </div>
         </div>
-        <Button asChild variant="outline">
-          <Link href="/">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Tools
-          </Link>
-        </Button>
       </header>
       
       <main className="grid grid-cols-1 lg:grid-cols-3 gap-8">

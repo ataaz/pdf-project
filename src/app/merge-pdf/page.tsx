@@ -6,9 +6,7 @@ import { PdfUploadArea } from '@/components/merge-pdf/PdfUploadArea';
 import { PdfPreviewList } from '@/components/merge-pdf/PdfPreviewList';
 import { ActionButtons } from '@/components/jpg2pdf-swift/ActionButtons';
 import { useToast } from '@/hooks/use-toast';
-import Link from 'next/link';
-import { ArrowLeft, Combine } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Combine } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 
 
@@ -87,7 +85,7 @@ export default function MergePdfPage() {
 
 
   return (
-    <div className="container mx-auto p-4 md:p-8 min-h-screen">
+    <div className="container mx-auto p-4 md:p-8 max-w-6xl">
       <header className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
           <Combine className="h-10 w-10 text-primary" />
@@ -96,12 +94,6 @@ export default function MergePdfPage() {
             <p className="text-lg text-muted-foreground">Combine multiple PDF files into one</p>
           </div>
         </div>
-        <Button asChild variant="outline">
-          <Link href="/">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Tools
-          </Link>
-        </Button>
       </header>
       
       <main className="grid grid-cols-1 lg:grid-cols-3 gap-8">

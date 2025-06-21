@@ -2,8 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import Link from 'next/link';
-import { ArrowLeft, Spline, FileText, Trash2, Loader2 } from 'lucide-react';
+import { Spline, FileText, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { PdfUploadArea } from '@/components/split-pdf/PdfUploadArea';
@@ -98,7 +97,7 @@ export default function SplitPdfPage() {
 
 
   return (
-    <div className="container mx-auto p-4 md:p-8 min-h-screen">
+    <div className="container mx-auto p-4 md:p-8 max-w-6xl">
       <header className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
           <Spline className="h-10 w-10 text-primary" />
@@ -107,12 +106,6 @@ export default function SplitPdfPage() {
             <p className="text-lg text-muted-foreground">Extract pages from a PDF file</p>
           </div>
         </div>
-        <Button asChild variant="outline">
-          <Link href="/">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Tools
-          </Link>
-        </Button>
       </header>
       
       <main className="grid grid-cols-1 lg:grid-cols-3 gap-8">

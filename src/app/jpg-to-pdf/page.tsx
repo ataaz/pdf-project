@@ -9,9 +9,7 @@ import { PdfSettings } from '@/components/jpg2pdf-swift/PdfSettings';
 import { AiSuggestionCard } from '@/components/jpg2pdf-swift/AiSuggestionCard';
 import { ActionButtons } from '@/components/jpg2pdf-swift/ActionButtons';
 import { useToast } from '@/hooks/use-toast';
-import Link from 'next/link';
-import { ArrowLeft, FileImage } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { FileImage } from 'lucide-react';
 
 export default function JpgToPdfPage() {
   const [images, setImages] = useState<UploadedImage[]>([]);
@@ -141,7 +139,7 @@ export default function JpgToPdfPage() {
 
 
   return (
-    <div className="container mx-auto p-4 md:p-8 min-h-screen">
+    <div className="container mx-auto p-4 md:p-8 max-w-6xl">
       <header className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-4">
           <FileImage className="h-10 w-10 text-primary" />
@@ -150,12 +148,6 @@ export default function JpgToPdfPage() {
             <p className="text-lg text-muted-foreground">Convert JPG images to a single PDF file</p>
           </div>
         </div>
-        <Button asChild variant="outline">
-          <Link href="/">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Tools
-          </Link>
-        </Button>
       </header>
       
       <main className="grid grid-cols-1 lg:grid-cols-3 gap-8">

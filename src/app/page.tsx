@@ -52,11 +52,11 @@ const tools: Tool[] = [
 
 export default function HomePage() {
   return (
-    <div className="container mx-auto p-4 md:p-8 min-h-screen">
+    <div className="container mx-auto p-4 md:p-8 max-w-6xl">
       <header className="mb-10 text-center">
         <div className="inline-flex items-center justify-center mb-3">
            <Grid2X2 className="h-12 w-12 text-primary mr-3" />
-           <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary">Your PDF Toolkit</h1>
+           <h1 className="text-4xl md:text-5xl font-headline font-bold text-primary">PDFry</h1>
         </div>
         <p className="text-lg text-muted-foreground">
           All the PDF tools you need, in one place. Easy, fast, and free.
@@ -86,10 +86,6 @@ export default function HomePage() {
           ))}
         </div>
       </main>
-
-      <footer className="mt-16 text-center text-sm text-muted-foreground py-8 border-t">
-        <p>&copy; {new Date().getFullYear()} PDF Toolkit. All rights reserved.</p>
-      </footer>
     </div>
   );
 }
