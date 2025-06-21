@@ -140,12 +140,12 @@ export default function JpgToPdfPage() {
 
   return (
     <div className="container mx-auto p-4 md:p-8 max-w-6xl">
-      <header className="flex items-center justify-between mb-8">
-        <div className="flex items-center gap-4">
-          <FileImage className="h-10 w-10 text-primary" />
+      <header className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+        <div className="flex items-center gap-3">
+          <FileImage className="h-8 w-8 sm:h-10 sm:w-10 text-primary" />
           <div>
-            <h1 className="text-3xl font-bold text-primary">JPG to PDF</h1>
-            <p className="text-lg text-muted-foreground">Convert JPG images to a single PDF file</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-primary">JPG to PDF</h1>
+            <p className="text-base sm:text-lg text-muted-foreground">Convert JPG images to a single PDF file</p>
           </div>
         </div>
       </header>
