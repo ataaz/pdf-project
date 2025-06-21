@@ -107,7 +107,7 @@ export default function UnlockPdfPage() {
         </div>
       </header>
 
-      <main className="flex flex-col items-center gap-8">
+      <main className="flex flex-col items-start gap-8">
         <Card className="w-full max-w-2xl">
           <CardHeader>
             <CardTitle>1. Upload Your Locked PDF</CardTitle>

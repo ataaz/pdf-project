@@ -144,7 +144,7 @@ export default function RotatePdfPage() {
         )}
       </header>
       
-      <main className="flex flex-col items-center gap-8">
+      <main className="flex flex-col items-start gap-8">
         {!pdfFile ? (
           <Card className="w-full max-w-4xl">
             <CardHeader>
