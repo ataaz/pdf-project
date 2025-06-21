@@ -10,7 +10,7 @@ import {
   MenubarMenu,
   MenubarTrigger,
 } from "@/components/ui/menubar";
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import {
   Accordion,
   AccordionContent,
@@ -113,12 +113,16 @@ const MobileNav = () => {
             <span className="sr-only">Toggle Menu</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="w-[300px]">
+        <SheetContent side="left" className="w-[300px] p-0">
+          <SheetHeader className="p-4 border-b">
+            <SheetTitle asChild>
+              <Link href="/" className="flex items-center space-x-2" onClick={() => setIsMobileMenuOpen(false)}>
+                <Grid2X2 className="h-6 w-6 text-primary" />
+                <span className="font-bold">PDFry</span>
+              </Link>
+            </SheetTitle>
+          </SheetHeader>
           <div className="p-4">
-            <Link href="/" className="flex items-center space-x-2 mb-6" onClick={() => setIsMobileMenuOpen(false)}>
-              <Grid2X2 className="h-6 w-6 text-primary" />
-              <span className="font-bold">PDFry</span>
-            </Link>
             <Accordion type="single" collapsible className="w-full">
               {navLinks.map((group) => (
                 <AccordionItem key={group.title} value={group.title}>
