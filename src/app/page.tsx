@@ -1,7 +1,5 @@
 
-"use client";
-
-import React from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import {
@@ -11,6 +9,11 @@ import {
   SquareSlash, Crop, Grid2X2
 } from 'lucide-react';
 import { AdBanner } from '@/components/AdBanner';
+
+export const metadata: Metadata = {
+  title: 'PDFry - All-in-one PDF tools',
+  description: 'All the PDF tools you need, in one place. Easy, fast, and free.',
+};
 
 interface Tool {
   name: string;

@@ -19,6 +19,7 @@ import {
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
 import { Grid2X2, Menu } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const navLinks = [
     {
@@ -80,9 +81,92 @@ const navLinks = [
     },
 ];
 
-const Header = () => {
+const DesktopNav = () => (
+  <nav className="hidden md:flex">
+    <Menubar>
+      {navLinks.map((group) => (
+        <MenubarMenu key={group.title}>
+          <MenubarTrigger>{group.title}</MenubarTrigger>
+          <MenubarContent>
+            {group.items.map((item) => (
+              <MenubarItem key={item.href} asChild>
+                <Link href={item.href}>{item.label}</Link>
+              </MenubarItem>
+            ))}
+          </MenubarContent>
+        </MenubarMenu>
+      ))}
+    </Menubar>
+  </nav>
+);
+
+const MobileNav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
+  return (
+    <div className="md:hidden">
+      <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+        <SheetTrigger asChild>
+          <Button variant="ghost" size="icon">
+            <Menu className="h-6 w-6" />
+            <span className="sr-only">Toggle Menu</span>
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="left" className="w-[300px]">
+          <div className="p-4">
+            <Link href="/" className="flex items-center space-x-2 mb-6" onClick={() => setIsMobileMenuOpen(false)}>
+              <Grid2X2 className="h-6 w-6 text-primary" />
+              <span className="font-bold">PDFry</span>
+            </Link>
+            <Accordion type="single" collapsible className="w-full">
+              {navLinks.map((group) => (
+                <AccordionItem key={group.title} value={group.title}>
+                  <AccordionTrigger>{group.title}</AccordionTrigger>
+                  <AccordionContent>
+                    <div className="flex flex-col space-y-1 pl-4">
+                      {group.items.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="p-2 rounded-md hover:bg-accent"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
+        </SheetContent>
+      </Sheet>
+    </div>
+  );
+};
+
+
+const Navigation = () => {
+  const [isClient, setIsClient] = React.useState(false);
+  
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  return isClient ? (
+    <>
+      <DesktopNav />
+      <MobileNav />
+    </>
+  ) : (
+    // Render a placeholder on the server to prevent hydration mismatch
+    <div className="h-9 w-24 rounded-md animate-pulse bg-muted" />
+  );
+};
+
+
+const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 justify-center flex">
       <div className="container flex h-14 max-w-6xl items-center justify-between">
@@ -90,65 +174,7 @@ const Header = () => {
           <Grid2X2 className="h-6 w-6 text-primary" />
           <span className="font-bold">PDFry</span>
         </Link>
-        
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex">
-            <Menubar>
-                {navLinks.map((group) => (
-                    <MenubarMenu key={group.title}>
-                        <MenubarTrigger>{group.title}</MenubarTrigger>
-                        <MenubarContent>
-                            {group.items.map((item) => (
-                                <MenubarItem key={item.href} asChild>
-                                    <Link href={item.href}>{item.label}</Link>
-                                </MenubarItem>
-                            ))}
-                        </MenubarContent>
-                    </MenubarMenu>
-                ))}
-            </Menubar>
-        </nav>
-
-        {/* Mobile Navigation */}
-        <div className="md:hidden">
-            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-                <SheetTrigger asChild>
-                    <Button variant="ghost" size="icon">
-                        <Menu className="h-6 w-6" />
-                        <span className="sr-only">Toggle Menu</span>
-                    </Button>
-                </SheetTrigger>
-                <SheetContent side="left" className="w-[300px]">
-                    <div className="p-4">
-                      <Link href="/" className="flex items-center space-x-2 mb-6" onClick={() => setIsMobileMenuOpen(false)}>
-                        <Grid2X2 className="h-6 w-6 text-primary" />
-                        <span className="font-bold">PDFry</span>
-                      </Link>
-                      <Accordion type="single" collapsible className="w-full">
-                          {navLinks.map((group) => (
-                              <AccordionItem key={group.title} value={group.title}>
-                                  <AccordionTrigger>{group.title}</AccordionTrigger>
-                                  <AccordionContent>
-                                      <div className="flex flex-col space-y-1 pl-4">
-                                          {group.items.map((item) => (
-                                              <Link 
-                                                  key={item.href} 
-                                                  href={item.href} 
-                                                  className="p-2 rounded-md hover:bg-accent"
-                                                  onClick={() => setIsMobileMenuOpen(false)}
-                                              >
-                                                  {item.label}
-                                              </Link>
-                                          ))}
-                                      </div>
-                                  </AccordionContent>
-                              </AccordionItem>
-                          ))}
-                      </Accordion>
-                    </div>
-                </SheetContent>
-            </Sheet>
-        </div>
+        <Navigation />
       </div>
     </header>
   );
