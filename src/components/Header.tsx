@@ -15,15 +15,15 @@ import { Grid2X2 } from 'lucide-react';
 const Header = () => {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-6xl items-center">
-        <div className="mr-4 flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
+      <div className="container flex flex-col md:flex-row h-auto md:h-14 py-2 md:py-0 max-w-6xl items-center justify-center gap-4">
+        <div className="flex-shrink-0">
+          <Link href="/" className="flex items-center space-x-2">
             <Grid2X2 className="h-6 w-6 text-primary" />
             <span className="font-bold">PDFry</span>
           </Link>
         </div>
-        <div className="flex flex-1 items-center justify-end space-x-2">
-          <Menubar>
+        <div className="flex items-center justify-center flex-grow md:flex-grow-0">
+          <Menubar className="flex-wrap md:flex-nowrap h-auto md:h-10 justify-center">
             <MenubarMenu>
               <MenubarTrigger>Organize PDF</MenubarTrigger>
               <MenubarContent>
