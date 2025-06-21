@@ -7,3 +7,9 @@ export interface UploadedImage {
 
 export type PdfOrientation = 'portrait' | 'landscape';
 export type PdfMargin = 'none' | 'small' | 'medium' | 'large';
+
+export interface UploadedPdf {
+  id: string;
+  file: File;
+  name: string;
+}

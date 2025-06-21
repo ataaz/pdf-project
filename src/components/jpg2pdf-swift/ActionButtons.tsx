@@ -9,6 +9,8 @@ interface ActionButtonsProps {
   isConverting: boolean;
   canConvert: boolean;
   className?: string;
+  buttonText?: string;
+  convertingText?: string;
 }
 
 export function ActionButtons({
@@ -16,6 +18,8 @@ export function ActionButtons({
   isConverting,
   canConvert,
   className,
+  buttonText = 'Convert to PDF & Download',
+  convertingText = 'Converting...',
 }: ActionButtonsProps) {
   return (
     <div className={className}>
@@ -30,7 +34,7 @@ export function ActionButtons({
         ) : (
           <Download className="mr-2 h-5 w-5" />
         )}
-        {isConverting ? 'Converting...' : 'Convert to PDF & Download'}
+        {isConverting ? convertingText : buttonText}
       </Button>
     </div>
   );
