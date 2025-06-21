@@ -192,7 +192,7 @@ export default function AddPageNumbersPage() {
         </div>
 
         <aside className="space-y-6">
-          <AdBanner type="vertical" className="hidden lg:flex" />
+          <AdBanner type="vertical" />
           <NumberSettings settings={settings} onSettingsChange={setSettings} disabled={!pdfFile || isProcessing} />
           <Button onClick={handleAddNumbers} disabled={!pdfFile || isProcessing} className="w-full text-lg py-6">
               {isProcessing ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Download className="mr-2 h-5 w-5" />}

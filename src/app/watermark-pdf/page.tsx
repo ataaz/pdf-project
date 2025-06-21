@@ -235,7 +235,7 @@ export default function WatermarkPdfPage() {
         </div>
 
         <aside className="space-y-6">
-          <AdBanner type="vertical" className="hidden lg:flex" />
+          <AdBanner type="vertical" />
           <Card>
             <CardHeader>
                 <CardTitle>2. Watermark Settings</CardTitle>

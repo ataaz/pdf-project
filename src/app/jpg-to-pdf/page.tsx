@@ -165,7 +165,7 @@ export default function JpgToPdfPage() {
         </div>
 
         <aside className="space-y-6">
-          <AdBanner type="vertical" className="hidden lg:flex" />
+          <AdBanner type="vertical" />
           <PdfSettings
             orientation={orientation}
             onOrientationChange={setOrientation}

@@ -124,7 +124,7 @@ export default function SplitPdfPage() {
         </div>
 
         <aside className="space-y-6">
-          <AdBanner type="vertical" className="hidden lg:flex" />
+          <AdBanner type="vertical" />
           {pdfFile && (
             <Card>
               <CardHeader>
