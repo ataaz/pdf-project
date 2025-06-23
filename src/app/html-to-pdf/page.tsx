@@ -74,15 +74,17 @@ export default function HtmlToPdfPage() {
       const canvasWidth = canvas.width;
       const canvasHeight = canvas.height;
       const imgHeight = (canvasHeight * pdfWidth) / canvasWidth;
-      
-      const totalPDFPages = Math.ceil(imgHeight / pdfHeight);
-      
-      for (let i = 0; i < totalPDFPages; i++) {
-        if (i > 0) {
-            pdf.addPage();
-        }
-        const yPosition = -(pdfHeight * i);
-        pdf.addImage(imgData, 'PNG', 0, yPosition, pdfWidth, imgHeight);
+      let heightLeft = imgHeight;
+      let position = 0;
+
+      pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
+      heightLeft -= pdfHeight;
+
+      while (heightLeft > 0) {
+          position = heightLeft - imgHeight;
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
+          heightLeft -= pdfHeight;
       }
 
       pdf.save('html-content.pdf');

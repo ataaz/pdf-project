@@ -18,12 +18,14 @@ export default function MergePdfPage() {
   const { toast } = useToast();
 
   const handleFilesAdded = useCallback((files: File[]) => {
-    const newPdfs = files.map(file => ({
-        id: `${file.name}-${file.lastModified}-${Math.random()}`,
-        file,
-        name: file.name,
-    }));
-    setPdfs((prev) => [...prev, ...newPdfs]);
+    setPdfs((prevPdfs) => {
+        const newPdfs = files.map((file, index) => ({
+            id: `${file.name}-${file.lastModified}-${prevPdfs.length + index}`,
+            file,
+            name: file.name,
+        }));
+        return [...prevPdfs, ...newPdfs];
+    });
   }, []);
 
 

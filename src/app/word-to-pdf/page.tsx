@@ -96,28 +96,18 @@ export default function WordToPdfPage() {
       
       const canvasWidth = canvas.width;
       const canvasHeight = canvas.height;
-      const canvasAspectRatio = canvasWidth / canvasHeight;
-      
-      const pdfAspectRatio = pdfWidth / pdfHeight;
-
-      let finalCanvasHeight, finalCanvasWidth;
-
-      if (canvasAspectRatio > pdfAspectRatio) {
-        finalCanvasWidth = pdfWidth;
-        finalCanvasHeight = pdfWidth / canvasAspectRatio;
-      } else {
-        finalCanvasHeight = pdfHeight;
-        finalCanvasWidth = pdfHeight * canvasAspectRatio;
-      }
-
-      const totalPDFPages = Math.ceil(canvasHeight / (canvasWidth / finalCanvasWidth * (pdfHeight / pdfWidth)));
+      const imgHeight = (canvasHeight * pdfWidth) / canvasWidth;
+      let heightLeft = imgHeight;
       let position = 0;
-      
-      for (let i = 0; i < totalPDFPages; i++) {
-        if (i > 0) pdf.addPage();
-        const srcY = position;
-        pdf.addImage(canvas, 'PNG', 0, srcY, canvas.width, canvas.height, undefined, 'FAST');
-        position += pdfHeight;
+
+      pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
+      heightLeft -= pdfHeight;
+
+      while (heightLeft > 0) {
+          position = heightLeft - imgHeight;
+          pdf.addPage();
+          pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
+          heightLeft -= pdfHeight;
       }
 
       const pdfFileName = wordFile.name.replace(/\.docx$/i, '.pdf');
